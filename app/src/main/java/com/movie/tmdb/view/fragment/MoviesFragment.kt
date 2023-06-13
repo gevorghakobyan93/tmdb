@@ -40,7 +40,7 @@ class MoviesFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                moviesViewModel.getPopularMovies().collectLatest {
+                moviesViewModel.getPopularMovies().collect {
                     adapter.submitData(it)
                 }
             }

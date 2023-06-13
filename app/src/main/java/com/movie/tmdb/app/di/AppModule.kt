@@ -1,5 +1,6 @@
 package com.movie.tmdb.app.di
 
+import com.movie.tmdb.BuildConfig
 import com.movie.tmdb.data.api.MoviesApi
 import com.movie.tmdb.data.repository.MoviesRepository
 import com.movie.tmdb.data.repository.MoviesRepositoryImpl
@@ -21,7 +22,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class AppModule {
-    private val API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3OTJhZjliZGM5YmY2OTU2ZTM0MjFjMWNlMmRkOWI5MyIsInN1YiI6IjU4OGQ4N2MxOTI1MTQxMTg0YjAwMzk0MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.0MWmif2fBmXw3NS2KayhZ_Gr4o8Bdy3kKSylUrFXIlg"
 
     @Provides
     @Singleton
@@ -29,7 +29,7 @@ class AppModule {
         return Interceptor {
             val request = it.request().newBuilder()
             request.addHeader("accept", "application/json")
-            request.addHeader("Authorization", "Bearer $API_KEY")
+            request.addHeader("Authorization", "Bearer ${BuildConfig.API_KEY}")
             val actualRequest = request.build()
             it.proceed(actualRequest)
         }
@@ -47,7 +47,7 @@ class AppModule {
     @Provides
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
-        .baseUrl("https://api.themoviedb.org/3/")
+        .baseUrl(BuildConfig.BASE_URL)
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build()

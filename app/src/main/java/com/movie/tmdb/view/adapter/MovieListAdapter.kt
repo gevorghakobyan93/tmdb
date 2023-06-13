@@ -1,12 +1,17 @@
 package com.movie.tmdb.view.adapter
 
+import android.R
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.movie.tmdb.BuildConfig
 import com.movie.tmdb.data.model.Movie
 import com.movie.tmdb.databinding.ItemMovieBinding
+
 
 class MovieListAdapter :
     PagingDataAdapter<Movie, MovieListAdapter.MovieViewHolder>(MovieListDiffCallback()) {
@@ -41,11 +46,15 @@ class MovieListAdapter :
         }
     }
 
-    inner class MovieViewHolder(private val binding: ItemMovieBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
+    inner class MovieViewHolder(private val binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: Movie) {
+            val options: RequestOptions = RequestOptions()
+                .centerCrop()
 
+            Glide.with(binding.root)
+                .load(BuildConfig.IMAGE_URL + movie.backdropPath)
+                .apply(options)
+                .into(binding.ivMoviePoster)
         }
     }
 
