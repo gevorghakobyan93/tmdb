@@ -7,10 +7,10 @@ import com.movie.tmdb.data.api.MoviesApi
 import com.movie.tmdb.data.api.handleApi
 import com.movie.tmdb.data.model.Movie
 
-const val STARTING_PAGE_INDEX = 1
 class MoviesPagingSource(
     private val service: MoviesApi
 ) : PagingSource<Int, Movie>() {
+    private val STARTING_PAGE_INDEX = 1
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
         val position = params.key ?: STARTING_PAGE_INDEX

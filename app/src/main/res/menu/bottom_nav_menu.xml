@@ -2,8 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/movies"
+        android:icon="@drawable/ic_movie_foreground"
         android:title="Movies" />
     <item
         android:id="@+id/genres"
+        android:icon="@android:drawable/ic_menu_today"
         android:title="Genres" />
 </menu>

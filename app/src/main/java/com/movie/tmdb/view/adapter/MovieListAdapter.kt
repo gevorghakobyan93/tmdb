@@ -1,6 +1,5 @@
 package com.movie.tmdb.view.adapter
 
-import android.R
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -13,7 +12,7 @@ import com.movie.tmdb.data.model.Movie
 import com.movie.tmdb.databinding.ItemMovieBinding
 
 
-class MovieListAdapter :
+class MovieListAdapter(private val itemClick: OnItemClick) :
     PagingDataAdapter<Movie, MovieListAdapter.MovieViewHolder>(MovieListDiffCallback()) {
 
     override fun onCreateViewHolder(
@@ -31,22 +30,14 @@ class MovieListAdapter :
     ) {
         val item: Movie? = getItem(position)
         item?.let { holder.bind(it) }
-    }
 
-    override fun onBindViewHolder(
-        holder: MovieViewHolder,
-        position: Int,
-        payloads: MutableList<Any>
-    ) {
-        if (payloads.isNullOrEmpty()) {
-            super.onBindViewHolder(holder, position, payloads)
-        } else {
-            val newItem = payloads[0] as Movie
-            holder.bind(newItem)
+        holder.itemView.setOnClickListener {
+            itemClick.onClick(item?.id)
         }
     }
 
-    inner class MovieViewHolder(private val binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class MovieViewHolder(private val binding: ItemMovieBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: Movie) {
             val options: RequestOptions = RequestOptions()
                 .centerCrop()
@@ -74,5 +65,9 @@ class MovieListAdapter :
 
             return super.getChangePayload(oldItem, newItem)
         }
+    }
+
+    interface OnItemClick {
+        fun onClick(id: Int?)
     }
 }
