@@ -1,9 +1,9 @@
-package com.movie.tmdb.data.repository
+package com.movie.tmdb.model.repository
 
 import androidx.paging.PagingData
-import com.movie.tmdb.data.api.ApiResult
-import com.movie.tmdb.data.model.GenresResponse
-import com.movie.tmdb.data.model.Movie
+import com.movie.tmdb.model.repository.api.ApiResult
+import com.movie.tmdb.model.repository.api.model.GenresResponse
+import com.movie.tmdb.model.repository.api.model.Movie
 import kotlinx.coroutines.flow.Flow
 
 interface MoviesRepository {

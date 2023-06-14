@@ -3,8 +3,8 @@ package com.movie.tmdb.view.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.movie.tmdb.data.model.Genre
 import com.movie.tmdb.databinding.ItemGenreBinding
+import com.movie.tmdb.model.repository.api.model.Genre
 
 
 class GenresListAdapter(private val genres: List<Genre>, private val itemClick: OnItemClick) :

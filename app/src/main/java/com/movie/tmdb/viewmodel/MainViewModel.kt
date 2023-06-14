@@ -5,17 +5,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
-import com.movie.tmdb.data.api.ApiResult
-import com.movie.tmdb.data.model.Genre
-import com.movie.tmdb.data.model.Movie
-import com.movie.tmdb.data.repository.MoviesRepository
+import com.movie.tmdb.model.repository.MoviesRepository
+import com.movie.tmdb.model.repository.api.ApiResult
+import com.movie.tmdb.model.repository.api.model.Genre
+import com.movie.tmdb.model.repository.api.model.Movie
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
 import javax.inject.Inject
@@ -47,11 +46,11 @@ class MainViewModel @Inject constructor(private val moviesRepository: MoviesRepo
                 .catch {
                     Log.d("TAG", "getGenres: exception $it")
                 }
-                .collect{
+                .collect {
                     when (it) {
                         is ApiResult.Success -> genreMutableLiveData.postValue(it.data.genres)
-                        is ApiResult.Error ->  Log.d("TAG", "onViewCreated: error ${it.message}")
-                        is ApiResult.Exception ->  Log.d("TAG", "onViewCreated: exception ${it.e}")
+                        is ApiResult.Error -> Log.d("TAG", "onViewCreated: error ${it.message}")
+                        is ApiResult.Exception -> Log.d("TAG", "onViewCreated: exception ${it.e}")
                     }
                 }
         }

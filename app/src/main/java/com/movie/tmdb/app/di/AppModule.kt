@@ -1,9 +1,9 @@
 package com.movie.tmdb.app.di
 
 import com.movie.tmdb.BuildConfig
-import com.movie.tmdb.data.api.MoviesApi
-import com.movie.tmdb.data.repository.MoviesRepository
-import com.movie.tmdb.data.repository.MoviesRepositoryImpl
+import com.movie.tmdb.model.repository.MoviesRepository
+import com.movie.tmdb.model.repository.MoviesRepositoryImpl
+import com.movie.tmdb.model.repository.api.MoviesApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -59,5 +59,6 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideLocationRepository(moviesApi: MoviesApi): MoviesRepository = MoviesRepositoryImpl(moviesApi)
+    fun provideLocationRepository(moviesApi: MoviesApi): MoviesRepository =
+        MoviesRepositoryImpl(moviesApi)
 }

@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.movie.tmdb.BuildConfig
-import com.movie.tmdb.data.model.Movie
 import com.movie.tmdb.databinding.ItemMovieBinding
+import com.movie.tmdb.model.repository.api.model.Movie
 
 
 class MovieListAdapter(private val itemClick: OnItemClick) :

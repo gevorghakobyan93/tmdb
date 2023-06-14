@@ -1,11 +1,11 @@
-package com.movie.tmdb.data.source
+package com.movie.tmdb.model.source
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.movie.tmdb.data.api.ApiResult
-import com.movie.tmdb.data.api.MoviesApi
-import com.movie.tmdb.data.api.handleApi
-import com.movie.tmdb.data.model.Movie
+import com.movie.tmdb.model.repository.api.ApiResult
+import com.movie.tmdb.model.repository.api.MoviesApi
+import com.movie.tmdb.model.repository.api.handleApi
+import com.movie.tmdb.model.repository.api.model.Movie
 
 class MoviesPagingSource(
     private val service: MoviesApi

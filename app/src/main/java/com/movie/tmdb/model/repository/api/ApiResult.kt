@@ -1,4 +1,4 @@
-package com.movie.tmdb.data.api
+package com.movie.tmdb.model.repository.api
 
 import android.util.Log
 import retrofit2.HttpException

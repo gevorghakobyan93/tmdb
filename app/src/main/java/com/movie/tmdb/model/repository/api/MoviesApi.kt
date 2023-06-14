@@ -1,7 +1,7 @@
-package com.movie.tmdb.data.api
+package com.movie.tmdb.model.repository.api
 
-import com.movie.tmdb.data.model.GenresResponse
-import com.movie.tmdb.data.model.MoviesResponse
+import com.movie.tmdb.model.repository.api.model.GenresResponse
+import com.movie.tmdb.model.repository.api.model.MoviesResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

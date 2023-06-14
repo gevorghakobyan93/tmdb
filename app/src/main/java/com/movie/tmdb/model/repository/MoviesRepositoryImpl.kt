@@ -1,15 +1,14 @@
-package com.movie.tmdb.data.repository
+package com.movie.tmdb.model.repository
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.movie.tmdb.data.api.ApiResult
-import com.movie.tmdb.data.api.MoviesApi
-import com.movie.tmdb.data.api.handleApi
-import com.movie.tmdb.data.model.Genre
-import com.movie.tmdb.data.model.GenresResponse
-import com.movie.tmdb.data.model.Movie
-import com.movie.tmdb.data.source.MoviesPagingSource
+import com.movie.tmdb.model.repository.api.ApiResult
+import com.movie.tmdb.model.repository.api.MoviesApi
+import com.movie.tmdb.model.repository.api.handleApi
+import com.movie.tmdb.model.repository.api.model.GenresResponse
+import com.movie.tmdb.model.repository.api.model.Movie
+import com.movie.tmdb.model.source.MoviesPagingSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
