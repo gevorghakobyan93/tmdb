@@ -9,11 +9,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.movie.tmdb.BuildConfig
 import com.movie.tmdb.databinding.ItemMovieBinding
-import com.movie.tmdb.model.repository.api.model.Movie
+import com.movie.tmdb.model.repository.api.model.PopularMovie
 
 
 class MovieListAdapter(private val itemClick: OnItemClick) :
-    PagingDataAdapter<Movie, MovieListAdapter.MovieViewHolder>(MovieListDiffCallback()) {
+    PagingDataAdapter<PopularMovie, MovieListAdapter.MovieViewHolder>(MovieListDiffCallback()) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -28,7 +28,7 @@ class MovieListAdapter(private val itemClick: OnItemClick) :
         holder: MovieViewHolder,
         position: Int
     ) {
-        val item: Movie? = getItem(position)
+        val item: PopularMovie? = getItem(position)
         item?.let { holder.bind(it) }
 
         holder.itemView.setOnClickListener {
@@ -38,27 +38,27 @@ class MovieListAdapter(private val itemClick: OnItemClick) :
 
     inner class MovieViewHolder(private val binding: ItemMovieBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(movie: Movie) {
+        fun bind(popularMovie: PopularMovie) {
             val options: RequestOptions = RequestOptions()
                 .centerCrop()
 
             Glide.with(binding.root)
-                .load(BuildConfig.IMAGE_URL + movie.backdropPath)
+                .load(BuildConfig.IMAGE_URL + popularMovie.backdropPath)
                 .apply(options)
                 .into(binding.ivMoviePoster)
         }
     }
 
-    class MovieListDiffCallback : DiffUtil.ItemCallback<Movie>() {
-        override fun areItemsTheSame(oldItem: Movie, newItem: Movie) =
+    class MovieListDiffCallback : DiffUtil.ItemCallback<PopularMovie>() {
+        override fun areItemsTheSame(oldItem: PopularMovie, newItem: PopularMovie) =
             oldItem.id == newItem.id
 
         override fun areContentsTheSame(
-            oldItem: Movie,
-            newItem: Movie
+            oldItem: PopularMovie,
+            newItem: PopularMovie
         ) = oldItem == newItem
 
-        override fun getChangePayload(oldItem: Movie, newItem: Movie): Any? {
+        override fun getChangePayload(oldItem: PopularMovie, newItem: PopularMovie): Any? {
             if (oldItem != newItem) {
                 return newItem
             }

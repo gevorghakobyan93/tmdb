@@ -8,7 +8,8 @@ import androidx.paging.PagingData
 import com.movie.tmdb.model.repository.MoviesRepository
 import com.movie.tmdb.model.repository.api.ApiResult
 import com.movie.tmdb.model.repository.api.model.Genre
-import com.movie.tmdb.model.repository.api.model.Movie
+import com.movie.tmdb.model.repository.api.model.MovieResponse
+import com.movie.tmdb.model.repository.api.model.PopularMovie
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
@@ -24,9 +25,9 @@ import javax.inject.Inject
 // @Inject annotation used to inject all
 // dependencies to view model class
 @HiltViewModel
-class MainViewModel @Inject constructor(private val moviesRepository: MoviesRepository) :
-    ViewModel() {
+class MainViewModel @Inject constructor(private val moviesRepository: MoviesRepository) : ViewModel() {
 
+    val movieMutableLiveData = MutableLiveData<MovieResponse>()
     val genreMutableLiveData = MutableLiveData<List<Genre>>()
 
     var job: Job? = null
@@ -36,7 +37,7 @@ class MainViewModel @Inject constructor(private val moviesRepository: MoviesRepo
 
     private val scope = viewModelScope + Job() + exceptionHandler
 
-    fun getPopularMovies(): Flow<PagingData<Movie>> {
+    fun getPopularMovies(): Flow<PagingData<PopularMovie>> {
         return moviesRepository.getPopularMovies()
     }
 
@@ -53,6 +54,24 @@ class MainViewModel @Inject constructor(private val moviesRepository: MoviesRepo
                         is ApiResult.Exception -> Log.d("TAG", "onViewCreated: exception ${it.e}")
                     }
                 }
+        }
+    }
+
+    fun getMovie(id: Int?) {
+        job = scope.launch(Dispatchers.IO) {
+            id?.let { it ->
+                moviesRepository.getMovie(it)
+                    .catch {
+                        Log.d("TAG", "getGenres: exception $it")
+                    }
+                    .collect {
+                        when (it) {
+                            is ApiResult.Success -> movieMutableLiveData.postValue(it.data)
+                            is ApiResult.Error -> Log.d("TAG", "onViewCreated: error ${it.message}")
+                            is ApiResult.Exception -> Log.d("TAG", "onViewCreated: exception ${it.e}")
+                        }
+                    }
+            }
         }
     }
 

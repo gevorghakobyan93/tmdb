@@ -2,7 +2,7 @@ package com.movie.tmdb.model.repository.api.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Movie(
+data class PopularMovie(
 
     @SerializedName("adult") var adult: Boolean? = null,
     @SerializedName("backdrop_path") var backdropPath: String? = null,

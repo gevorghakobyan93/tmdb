@@ -1,7 +1,6 @@
 package com.movie.tmdb.view.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,7 +35,11 @@ class MoviesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         adapter = MovieListAdapter(object : MovieListAdapter.OnItemClick {
             override fun onClick(id: Int?) {
-                Log.d("TAG", "onClick: id $id")
+                val bottomDialogFragment: MovieDetailFragment = MovieDetailFragment.newInstance(id)
+                bottomDialogFragment.show(
+                    requireActivity().supportFragmentManager,
+                    "bottomDialogFragment"
+                )
             }
         })
         moviesBinding?.rvMovies?.adapter = adapter

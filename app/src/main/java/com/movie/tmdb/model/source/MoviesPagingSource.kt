@@ -5,14 +5,14 @@ import androidx.paging.PagingState
 import com.movie.tmdb.model.repository.api.ApiResult
 import com.movie.tmdb.model.repository.api.MoviesApi
 import com.movie.tmdb.model.repository.api.handleApi
-import com.movie.tmdb.model.repository.api.model.Movie
+import com.movie.tmdb.model.repository.api.model.PopularMovie
 
 class MoviesPagingSource(
     private val service: MoviesApi
-) : PagingSource<Int, Movie>() {
+) : PagingSource<Int, PopularMovie>() {
     private val STARTING_PAGE_INDEX = 1
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, PopularMovie> {
         val position = params.key ?: STARTING_PAGE_INDEX
 
         return when (val result = handleApi { service.getPopularMovies(position) }) {
@@ -28,7 +28,7 @@ class MoviesPagingSource(
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, PopularMovie>): Int? {
         // We need to get the previous key (or next key if previous is null) of the page
         // that was closest to the most recently accessed index.
         // Anchor position is the most recently accessed index

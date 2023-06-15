@@ -7,7 +7,8 @@ import com.movie.tmdb.model.repository.api.ApiResult
 import com.movie.tmdb.model.repository.api.MoviesApi
 import com.movie.tmdb.model.repository.api.handleApi
 import com.movie.tmdb.model.repository.api.model.GenresResponse
-import com.movie.tmdb.model.repository.api.model.Movie
+import com.movie.tmdb.model.repository.api.model.MovieResponse
+import com.movie.tmdb.model.repository.api.model.PopularMovie
 import com.movie.tmdb.model.source.MoviesPagingSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -15,7 +16,7 @@ import javax.inject.Inject
 
 class MoviesRepositoryImpl @Inject constructor(var moviesApi: MoviesApi) : MoviesRepository {
 
-    override fun getPopularMovies(): Flow<PagingData<Movie>> {
+    override fun getPopularMovies(): Flow<PagingData<PopularMovie>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 20,
@@ -28,6 +29,12 @@ class MoviesRepositoryImpl @Inject constructor(var moviesApi: MoviesApi) : Movie
     override suspend fun getGenres(): Flow<ApiResult<GenresResponse>> {
         return flow {
             emit(handleApi { moviesApi.getGenres() })
+        }
+    }
+
+    override fun getMovie(id: Int): Flow<ApiResult<MovieResponse>> {
+        return flow {
+            emit(handleApi { moviesApi.getMovie(id) })
         }
     }
 }
