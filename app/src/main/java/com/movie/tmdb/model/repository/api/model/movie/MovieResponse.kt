@@ -1,12 +1,13 @@
-package com.movie.tmdb.model.repository.api.model
+package com.movie.tmdb.model.repository.api.model.movie
 
 import com.google.gson.annotations.SerializedName
+import com.movie.tmdb.model.repository.api.model.genre.Genre
 
 data class MovieResponse(
 
   @SerializedName("adult") var adult: Boolean? = null,
   @SerializedName("backdrop_path") var backdropPath: String? = null,
-  @SerializedName("belongs_to_collection") var belongsToCollection: String? = null,
+  @SerializedName("belongs_to_collection" ) var belongsToCollection : BelongsToCollection?           = BelongsToCollection(),
   @SerializedName("budget") var budget: Int? = null,
   @SerializedName("genres") var genres: ArrayList<Genre> = arrayListOf(),
   @SerializedName("homepage") var homepage: String? = null,
@@ -20,7 +21,7 @@ data class MovieResponse(
   @SerializedName("production_companies") var productionCompanies: ArrayList<ProductionCompany> = arrayListOf(),
   @SerializedName("production_countries") var productionCountries: ArrayList<ProductionCountry> = arrayListOf(),
   @SerializedName("release_date") var releaseDate: String? = null,
-  @SerializedName("revenue") var revenue: Int? = null,
+  @SerializedName("revenue") var revenue: Long? = null,
   @SerializedName("runtime") var runtime: Int? = null,
   @SerializedName("spoken_languages") var spokenLanguages: ArrayList<SpokenLanguage> = arrayListOf(),
   @SerializedName("status") var status: String? = null,

@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.movie.tmdb.BuildConfig
 import com.movie.tmdb.databinding.ItemMovieBinding
-import com.movie.tmdb.model.repository.api.model.PopularMovie
+import com.movie.tmdb.model.repository.api.model.popular.PopularMovie
 
 
 class MovieListAdapter(private val itemClick: OnItemClick) :

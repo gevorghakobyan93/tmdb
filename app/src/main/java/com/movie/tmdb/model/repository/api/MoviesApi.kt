@@ -1,8 +1,8 @@
 package com.movie.tmdb.model.repository.api
 
-import com.movie.tmdb.model.repository.api.model.GenresResponse
-import com.movie.tmdb.model.repository.api.model.MovieResponse
-import com.movie.tmdb.model.repository.api.model.PopularMoviesResponse
+import com.movie.tmdb.model.repository.api.model.genre.GenresResponse
+import com.movie.tmdb.model.repository.api.model.movie.MovieResponse
+import com.movie.tmdb.model.repository.api.model.popular.PopularMoviesResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

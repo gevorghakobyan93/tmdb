@@ -6,9 +6,9 @@ import androidx.paging.PagingData
 import com.movie.tmdb.model.repository.api.ApiResult
 import com.movie.tmdb.model.repository.api.MoviesApi
 import com.movie.tmdb.model.repository.api.handleApi
-import com.movie.tmdb.model.repository.api.model.GenresResponse
-import com.movie.tmdb.model.repository.api.model.MovieResponse
-import com.movie.tmdb.model.repository.api.model.PopularMovie
+import com.movie.tmdb.model.repository.api.model.genre.GenresResponse
+import com.movie.tmdb.model.repository.api.model.movie.MovieResponse
+import com.movie.tmdb.model.repository.api.model.popular.PopularMovie
 import com.movie.tmdb.model.source.MoviesPagingSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

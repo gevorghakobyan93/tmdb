@@ -5,7 +5,7 @@ import androidx.paging.PagingState
 import com.movie.tmdb.model.repository.api.ApiResult
 import com.movie.tmdb.model.repository.api.MoviesApi
 import com.movie.tmdb.model.repository.api.handleApi
-import com.movie.tmdb.model.repository.api.model.PopularMovie
+import com.movie.tmdb.model.repository.api.model.popular.PopularMovie
 
 class MoviesPagingSource(
     private val service: MoviesApi

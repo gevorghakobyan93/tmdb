@@ -7,9 +7,9 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import com.movie.tmdb.model.repository.MoviesRepository
 import com.movie.tmdb.model.repository.api.ApiResult
-import com.movie.tmdb.model.repository.api.model.Genre
-import com.movie.tmdb.model.repository.api.model.MovieResponse
-import com.movie.tmdb.model.repository.api.model.PopularMovie
+import com.movie.tmdb.model.repository.api.model.genre.Genre
+import com.movie.tmdb.model.repository.api.model.movie.MovieResponse
+import com.movie.tmdb.model.repository.api.model.popular.PopularMovie
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
@@ -62,7 +62,7 @@ class MainViewModel @Inject constructor(private val moviesRepository: MoviesRepo
             id?.let { it ->
                 moviesRepository.getMovie(it)
                     .catch {
-                        Log.d("TAG", "getGenres: exception $it")
+                        Log.d("TAG", "getMovie: exception $it")
                     }
                     .collect {
                         when (it) {
